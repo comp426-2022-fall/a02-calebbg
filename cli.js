@@ -4,10 +4,11 @@ import minimist from 'minimist';
 import moment from 'moment-timezone';
 import fetch from 'node-fetch';
 
+// Get arguments
 const args = minimist(process.argv.slice(2));
-// console.log(args);
 
-if ( args.h ) {
+// Print help message if requested
+if (args.h) {
     console.log(`Usage: galosh.js [options] -[n|s] LATITUDE -[e|w] LONGITUDE -z TIME_ZONE
 
         -h            Show this help message and exit.
@@ -20,31 +21,65 @@ if ( args.h ) {
     process.exit(0);
 }
 
-const timezone = moment.tz.guest();
+// Get timezone from moment-timezone or from argument
+var timezone = moment.tz.guess();
+if (args.z) {
+    timezone = args.z;
+}
 
-const tz = args.z
-const latitude = "35.90"
-const longitude = "-79.05"
+// Get latitude from argument
+var latitude = 35.92;
+if (args.n) {
+    latitude = args.n;
+}
+else if (args.s) {
+    latitude = args.s;
+}
+
+// Get longitude from argument
+var longitude = 79.05;
+if (args.e) {
+    longitude = args.e;
+}
+else if (args.w) {
+    longitude = args.w;
+}
+
+// Build url with variables
 const base_url = "https://api.open-meteo.com/v1/forecast";
 
-const data_string = "latitude=" + latitude + "&longitude=" + longitude +"&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,precipitation_hours,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=" + tz
+const data_string = "latitude=" + latitude + "&longitude=" + longitude + "&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,precipitation_hours,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=" + timezone;
 
-const url = base_url + "?" + data_string
+const url = base_url + "?" + data_string;
 
-const response = await fetch(url)
+// Fetch data with url
+const response = await fetch(url);
 
-const data = await response.json()
+const data = await response.json();
 
-console.log(url)
+// Print data and exit if -j argument used
+if (args.j) {
+    console.log(data);
+    process.exit(0);
+}
 
-console.log(data)
+// Get days argument and concat appropriate messages
+var day = 1;
+if (args.d) {
+    day = args.d;
+}
 
-const days = args.d 
+if (data.daily.precipitation_hours[day] > 0) {
+    process.stdout.write("You might need your galoshes ");
+}
+else {
+    process.stdout.write("You probably won't need your galoshes ")
+}
 
-if (days == 0) {
-  console.log("today.")
-} else if (days > 1) {
-  console.log("in " + days + " days.")
+if (day == 0) {
+  console.log("today.");
+} else if (day > 1) {
+  console.log("in " + day + " days.");
 } else {
-  console.log("tomorrow.")
+  console.log("tomorrow.");
 }
