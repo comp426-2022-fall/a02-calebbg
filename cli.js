@@ -6,7 +6,6 @@ import fetch from 'node-fetch';
 
 // Get arguments
 const args = minimist(process.argv.slice(2));
-// console.log(args);
 
 // Print help message if requested
 if (args.h) {
@@ -37,11 +36,7 @@ if (args.n) {
 else if (args.s) {
     latitude = args.s * -1;
 }
-// console.log(latitude);
-// console.log(typeof latitude);
 latitude = latitude.toFixed(2);
-// console.log(latitude);
-// console.log(typeof latitude);
 
 // Get longitude from argument
 var longitude = 79.05;
@@ -51,12 +46,7 @@ if (args.e) {
 else if (args.w) {
     longitude = args.w * -1;
 }
-// console.log(longitude);
-// console.log(typeof longitude);
 longitude = longitude.toFixed(2);
-// console.log(longitude);
-// console.log(typeof longitude);
-
 
 // Build url with variables
 const base_url = "https://api.open-meteo.com/v1/forecast";

@@ -1,7 +1,7 @@
 {
   "name": "galosh",
   "version": "1.0.0",
-  "description": "a02 node.js package",
+  "description": "a02 node js package",
   "main": "index.js",
   "scripts": {
     "test": "node cli.js -n 35.92 -w 79.05 -z America/New_York"
