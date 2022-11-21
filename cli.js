@@ -53,7 +53,6 @@ const base_url = "https://api.open-meteo.com/v1/forecast";
 
 const data_string = "latitude=" + latitude + "&longitude=" + longitude + "&daily=precipitation_hours&current_weather=true&timezone=" + timezone;
 
-
 const url = base_url + "?" + data_string;
 
 // Fetch data with url
@@ -63,7 +62,7 @@ const data = await response.json();
 
 // Print data and exit if -j argument used
 if (args.j) {
-    console.log(data);
+    console.log("Latitude must be in range");
     process.exit(0);
 }
 
