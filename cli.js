@@ -51,7 +51,8 @@ longitude = longitude.toFixed(2);
 // Build url with variables
 const base_url = "https://api.open-meteo.com/v1/forecast";
 
-const data_string = "latitude=" + latitude + "&longitude=" + longitude + "&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,precipitation_hours,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=" + timezone;
+const data_string = "latitude=" + latitude + "&longitude=" + longitude + "&daily=precipitation_hours&current_weather=true&timezone=" + timezone;
+
 
 const url = base_url + "?" + data_string;
 
