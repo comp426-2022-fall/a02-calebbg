@@ -28,24 +28,28 @@ if (args.z) {
 }
 
 // Get latitude from argument
-var latitude = args.n || -Math.abs(args.s) || null;
-// if (args.n) {
-//     latitude = args.n;
-// }
-// else if (args.s) {
-//     latitude = -Math.abs(args.s);
-// }
-latitude = latitude.toFixed(2);
+var latitude = 35.92;
+if (args.n) {
+    latitude = args.n;
+    latitude = latitude.toFixed(2);
+}
+else if (args.s) {
+    latitude = -Math.abs(args.s);
+    latitude = latitude.toFixed(2);
+}
+
 
 // Get longitude from argument
-var longitude = args.e || -Math.abs(args.w) || null;
-// if (args.e) {
-//     longitude = args.e;
-// }
-// else if (args.w) {
-//     longitude = args.w * -1;
-// }
-longitude = longitude.toFixed(2);
+var longitude = 79.05;
+if (args.e) {
+    longitude = args.e;
+    longitude = longitude.toFixed(2);
+}
+else if (args.w) {
+    longitude = -Math.abs(args.w);
+    longitude = longitude.toFixed(2);
+}
+
 
 
 // Build url with variables
