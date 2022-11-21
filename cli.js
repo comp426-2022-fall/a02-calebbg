@@ -26,7 +26,6 @@ var timezone = moment.tz.guess();
 if (args.z) {
     timezone = args.z;
 }
-// console.log(timezone);
 
 // Get latitude from argument
 var latitude = 35.92;
@@ -34,7 +33,7 @@ if (args.n) {
     latitude = args.n;
 }
 else if (args.s) {
-    latitude = args.s * -1;
+    latitude = -Math.abs(args.s);
 }
 latitude = latitude.toFixed(2);
 
