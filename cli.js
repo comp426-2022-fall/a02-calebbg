@@ -28,26 +28,25 @@ if (args.z) {
 }
 
 // Get latitude from argument
-var latitude = null;
+var latitude = 35.875;
 if (args.n) {
     latitude = args.n;
-    latitude = latitude.toFixed(2);
 }
 else if (args.s) {
     latitude = -Math.abs(args.s);
-    latitude = latitude.toFixed(2);
 }
+latitude = latitude.toFixed(2);
 
 // Get longitude from argument
-var longitude = null;
+var longitude = -79;
 if (args.e) {
     longitude = args.e;
-    longitude = longitude.toFixed(2);
 }
 else if (args.w) {
     longitude = -Math.abs(args.w);
-    longitude = longitude.toFixed(2);
 }
+longitude = longitude.toFixed(2);
+
 
 // Build url with variables
 const base_url = "https://api.open-meteo.com/v1/forecast";
